@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SuggestionFormComponent } from './suggestion-form/suggestion-form.component';
-import { RankingComponent } from './ranking/ranking.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
 
 
 const routes: Routes = [
-  { path: '', component: RankingComponent},
+  { path: 'restaurants', component: RestaurantsComponent},
   { path:'', redirectTo:'restaurants', pathMatch:'full' },
   { path:'**', redirectTo:'restaurants' }
 ];

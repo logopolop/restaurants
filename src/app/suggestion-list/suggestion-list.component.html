@@ -1,7 +1,7 @@
 <div class="lists">
     <app-restaurant-ranking [restaurants$]="restaurants$"></app-restaurant-ranking>
 
-    <br />
+    <hr />
 
     <div>
         <h3>Restaurants</h3>
@@ -11,12 +11,15 @@
         
         <div *ngFor="let restau of restaurants$ | async">
             <div>
-                Nom : {{ restau.name }} <br />
-                Ajouté le : {{ restau.createdAt | date: "dd/MM/yyyy à HH:mm" }} <br />
+                <mat-icon 
+                    matTooltip='Ajouté le : {{ restau.createdAt | date: "dd/MM/yyyy à HH:mm" }}' 
+                    matTooltipPosition="above"
+                    color="primary"
+                >info</mat-icon> &nbsp; {{ restau.name }}
+                
                 <button mat-mini-fab color="accent" (click)="onVoted(restau)">
                     <mat-icon>plus_one</mat-icon>
                 </button>
-                {{ setRankLabel(restau) }}
             </div>
             <br />
         </div>

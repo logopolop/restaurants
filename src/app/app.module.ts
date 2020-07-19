@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 //Firebase Modules
 import { AngularFireModule } from "@angular/fire";
@@ -23,7 +24,7 @@ import firestoreConfig from './my-firestore';
 import { SuggestionFormComponent } from './suggestion-form/suggestion-form.component';
 import { SuggestionListComponent } from './suggestion-list/suggestion-list.component';
 import { RestaurantRankingComponent } from './restaurant-ranking/restaurant-ranking.component';
-import { RankingComponent } from './ranking/ranking.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { RankingComponent } from './ranking/ranking.component';
     SuggestionFormComponent,
     SuggestionListComponent,
     RestaurantRankingComponent,
-    RankingComponent
+    RestaurantsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,8 @@ import { RankingComponent } from './ranking/ranking.component';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
