@@ -1,0 +1,14 @@
+<h3>Résultats</h3>
+<div *ngIf="!(restaurants$ | async)">
+    Chargement ...
+</div>
+
+<div *ngIf="sortedRestaurants">
+    <mat-selection-list [multiple]="false">
+        <mat-list-option *ngFor="let restau of sortedRestaurants" [value]="restau" (click)="openConfirmDialog(restau)">
+            {{ setRankLabel(restau) }}
+        </mat-list-option>
+    </mat-selection-list>
+</div>
+
+
