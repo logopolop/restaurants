@@ -49,6 +49,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "baseHref": "https://logopolop.github.io/restaurants/",
               "budgets": [
                 {
                   "type": "initial",
