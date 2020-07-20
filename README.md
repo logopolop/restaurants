@@ -5,7 +5,7 @@ Ajoutez un restaurant, votez pour votre préféré et observez le classement.
 ### Demo
 Une demo est disponible [à cet endroit](https://logopolop.github.io/restaurants/)
 
-### Outils
+### Technos
 * Application : *Angular*
 * Design      : *Mangular Material*
 * Back-End    : *Firebase (avec AngularFire)*
