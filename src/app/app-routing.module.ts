@@ -4,8 +4,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 
 
 const routes: Routes = [
-  { path: 'restaurants', component: RestaurantsComponent},
-  { path:'', redirectTo:'restaurants', pathMatch:'full' },
+  { path:'', component: RestaurantsComponent, pathMatch:'full' },
   { path:'**', redirectTo:'restaurants' }
 ];
 
