@@ -3,7 +3,7 @@
 Ajoutez un restaurant, votez pour votre préféré et observez le classement.
 
 ### Demo
-Une demo est disponible [à cet endroit](https://logopolop.github.io/restaurants/)
+Une demo est disponible [à cet endroit](https://logopolop.github.io/restaurants/).
 
 ### Technos
 * Application : *Angular*
