@@ -1,24 +1,17 @@
-dist: xenial
-sudo: false
-
-language: node_js
-node_js:
-  - "10"
-
-cache:
-  directories:
-     - ./node_modules
-
-install:
-  - npm install
-
-script:
-  - npm run-script build
-
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: 53a34514eaab2f2d3ff6d3ee8260c58f472ce45d
-  local_dir: dist/angular-github-pages-travis
-  on:
-    branch: master
+matrix:
+  include:
+    - language: rust
+      rust:
+        - stable
+      jobs:
+        allow_failures:
+          - rust: nightly
+        fast_finish: true    
+    
+    - language: node.js
+      node_js: "12.0"
+      before_script:
+        - cd angular-application
+      script:
+        - npm install
+        - ng build --prod
