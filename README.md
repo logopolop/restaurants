@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/logopolop/restaurants.svg?branch=master)](https://travis-ci.org/logopolop/restaurants)
-# restaurants
+# Restaurants - On mange où ?
 Ajoutez un restaurant, votez pour votre préféré et observez le classement.
 
 ### Demo
