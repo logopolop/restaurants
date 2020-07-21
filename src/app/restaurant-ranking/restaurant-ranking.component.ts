@@ -13,7 +13,8 @@ export class RestaurantRankingComponent implements OnChanges {
 
   @Input()
   restaurants$;
-  sortedRestaurants: Restaurant[];
+  sortedBestRestaurants: Restaurant[];
+  sortedRestOfRestaurants: Restaurant[];
   modalResult;
 
   constructor(public dialog: MatDialog) { }
@@ -26,7 +27,9 @@ export class RestaurantRankingComponent implements OnChanges {
     .pipe(
       map((restaurants: Restaurant[]) => {
         const sortResult = restaurants.sort(this.sortByScore);
-        this.sortedRestaurants = sortResult;
+        this.sortedBestRestaurants = sortResult.slice(0, 3);
+        this.sortedRestOfRestaurants = sortResult.slice(3) ? sortResult.slice(3) : [];
+        
       })
     ).subscribe();
   }
@@ -41,7 +44,7 @@ export class RestaurantRankingComponent implements OnChanges {
   }
 
   setRankLabel(restaurant) {
-    return restaurant.votes <= 1 ? `${restaurant.votes} vote pour ${restaurant.name}` : `${restaurant.votes} votes pour ${restaurant.name}`;
+    return restaurant.votes <= 1 ? `<b>${restaurant.votes} vote</b> pour ${restaurant.name}` : `<b>${restaurant.votes} votes</b> pour ${restaurant.name}`;
   }
 
   openConfirmDialog(restaurant) {

@@ -14,6 +14,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 //Firebase Modules
 import { AngularFireModule } from "@angular/fire";
@@ -47,7 +50,10 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
     MatIconModule,
     MatListModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatToolbarModule,
+    MatExpansionModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

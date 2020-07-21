@@ -1,14 +1,28 @@
-<h3>Résultats</h3>
+<h3>Top restaurants</h3>
 <div *ngIf="!(restaurants$ | async)">
     Chargement ...
 </div>
 
-<div *ngIf="sortedRestaurants">
+<div *ngIf="sortedBestRestaurants">
     <mat-selection-list [multiple]="false">
-        <mat-list-option *ngFor="let restau of sortedRestaurants" [value]="restau" (click)="openConfirmDialog(restau)">
-            {{ setRankLabel(restau) }}
+        <mat-list-option *ngFor="let restau of sortedBestRestaurants" [value]="restau" (click)="openConfirmDialog(restau)">
+            <span [innerHTML]='setRankLabel(restau)'></span>
         </mat-list-option>
     </mat-selection-list>
 </div>
 
+<mat-accordion *ngIf="sortedRestOfRestaurants && sortedRestOfRestaurants.length >= 1">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Suite du classement
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-selection-list [multiple]="false">
+            <mat-list-option *ngFor="let restau of sortedRestOfRestaurants" [value]="restau" (click)="openConfirmDialog(restau)">
+                <span [innerHTML]='setRankLabel(restau)'></span>
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-expansion-panel>
+</mat-accordion>
 
