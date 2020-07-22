@@ -7,5 +7,5 @@ Une demo est disponible [à cet endroit](https://logopolop.github.io/restaurants
 
 ### Technos
 * Front-End   : *Angular*
-* Design      : *Mangular Material*
+* Design      : *Angular Material*
 * Back-End    : *Firebase (avec AngularFire)*
