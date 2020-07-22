@@ -31,4 +31,15 @@ export class RestaurantService {
   deleteRestaurant(restaurant) {
     return this.firestore.doc(`restaurants/${restaurant.id}`).delete();
   }
+
+  async resetAllRestaurants() {
+    await this.firestore.collection("restaurants").get().toPromise().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+          doc.ref.update({
+              votes: 0
+          });
+      });
+    });
+  }
+  
 }

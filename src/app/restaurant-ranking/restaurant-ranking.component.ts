@@ -1,8 +1,8 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, Inject } from '@angular/core';
 import { map } from "rxjs/operators";
 import { Restaurant } from '../models/restaurant';
-import { MatDialog } from '@angular/material/dialog';
-import { ModalComponent } from './modal.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { RestaurantService } from '../services/restaurant.service';
 
 @Component({
   selector: 'app-restaurant-ranking',
@@ -15,7 +15,6 @@ export class RestaurantRankingComponent implements OnChanges {
   restaurants$;
   sortedBestRestaurants: Restaurant[];
   sortedRestOfRestaurants: Restaurant[];
-  modalResult;
 
   constructor(public dialog: MatDialog) { }
 
@@ -47,14 +46,32 @@ export class RestaurantRankingComponent implements OnChanges {
     return restaurant.votes <= 1 ? `<b>${restaurant.votes} vote</b> pour ${restaurant.name}` : `<b>${restaurant.votes} votes</b> pour ${restaurant.name}`;
   }
 
-  openConfirmDialog(restaurant) {
+  openConfirmDialog(restaurant): void {
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '400px',
       data: { ...restaurant }
     });
+  }
+}
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.modalResult = result;
-    });
+@Component({
+  selector: 'app-modal-component',
+  templateUrl: './modal.component.html',
+})
+export class ModalComponent {
+
+  constructor(
+      private restaurantService: RestaurantService,
+      public dialogRef: MatDialogRef<ModalComponent>, 
+      @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+
+  onNoClick() {
+      this.dialogRef.close();
+  }
+
+  async onConfirmDelete() {
+      await this.restaurantService.deleteRestaurant(this.data);
+      this.dialogRef.close();
   }
 }
