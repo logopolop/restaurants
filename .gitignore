@@ -1,5 +1,5 @@
 # dependencies
-/node_modules
+node_modules/
 
 # firebase
-my-firestore.ts
+src/app/my-firestore.ts
