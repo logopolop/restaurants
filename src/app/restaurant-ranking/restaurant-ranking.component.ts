@@ -1,8 +1,10 @@
-import { Component, Input, OnChanges, Inject } from '@angular/core';
-import { map } from "rxjs/operators";
-import { Restaurant } from '../models/restaurant';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { RestaurantService } from '../services/restaurant.service';
+import { Component, OnChanges, Input } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+import { Restaurant } from './../models/restaurant';
+import { ModalComponent } from './modal.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-restaurant-ranking',
@@ -15,6 +17,7 @@ export class RestaurantRankingComponent implements OnChanges {
   restaurants$;
   sortedBestRestaurants: Restaurant[];
   sortedRestOfRestaurants: Restaurant[];
+  modalResult;
 
   constructor(public dialog: MatDialog) { }
 
@@ -36,42 +39,29 @@ export class RestaurantRankingComponent implements OnChanges {
   sortByScore(a, b) {
     if (a.votes > b.votes) {
       return -1;
-    } else {
+    } else if(a.votes < b.votes) {
       return 1;
+    } else {
+      return 0;
     }
-    return 0;
   }
 
   setRankLabel(restaurant) {
     return restaurant.votes <= 1 ? `<b>${restaurant.votes} vote</b> pour ${restaurant.name}` : `<b>${restaurant.votes} votes</b> pour ${restaurant.name}`;
   }
 
-  openConfirmDialog(restaurant): void {
+  openConfirmDialog(restaurant) {
+    this.openDialog(restaurant);
+  }
+
+  openDialog(restaurant): void {
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '400px',
       data: { ...restaurant }
     });
-  }
-}
 
-@Component({
-  selector: 'app-modal-component',
-  templateUrl: './modal.component.html',
-})
-export class ModalComponent {
-
-  constructor(
-      private restaurantService: RestaurantService,
-      public dialogRef: MatDialogRef<ModalComponent>, 
-      @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick() {
-      this.dialogRef.close();
-  }
-
-  async onConfirmDelete() {
-      await this.restaurantService.deleteRestaurant(this.data);
-      this.dialogRef.close();
+    dialogRef.afterClosed().subscribe((result) => {
+      this.modalResult = result;
+    });
   }
 }

@@ -1,10 +1,23 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+    <button mat-icon-button class="example-icon" *ngIf="isAuth" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
     <span>On mange où ?</span>
     <span class="spacer"></span>
-    <a class="github-button" href="https://github.com/logopolop/restaurants" data-icon="octicon-star" data-show-count="true" aria-label="Star logopolop/restaurants on GitHub">Star</a>      
+    <button mat-button routerLink="/restaurants">
+      <mat-icon>home</mat-icon> Accueil
+    </button>
+    <!--
+      <button mat-button *ngIf="!isAuth" routerLink="auth/signup">
+        <mat-icon>person_add</mat-icon> Inscription
+      </button>
+    -->
+    <button mat-button *ngIf="!isAuth" routerLink="auth/signin">
+      <mat-icon>person</mat-icon> Connexion
+    </button>
+    <button mat-button *ngIf="isAuth" (click)="onSignOut()">
+      <mat-icon>input</mat-icon> Déconnexion
+    </button>
 </mat-toolbar>
 
 <mat-drawer-container>

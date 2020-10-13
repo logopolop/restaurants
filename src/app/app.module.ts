@@ -18,7 +18,14 @@ import firestoreConfig from './my-firestore';
 import { SuggestionFormComponent } from './suggestion-form/suggestion-form.component';
 import { SuggestionListComponent } from './suggestion-list/suggestion-list.component';
 import { RestaurantRankingComponent } from './restaurant-ranking/restaurant-ranking.component';
+import { ModalComponent } from './restaurant-ranking/modal.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
+
+//Application Services
+import { RestaurantService } from './services/restaurant.service';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -27,7 +34,10 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
     SuggestionFormComponent,
     SuggestionListComponent,
     RestaurantRankingComponent,
-    RestaurantsComponent
+    RestaurantsComponent,
+    ModalComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +48,10 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
     ReactiveFormsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    RestaurantService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

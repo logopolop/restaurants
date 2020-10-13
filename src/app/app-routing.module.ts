@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 
 
 const routes: Routes = [
-  { path:'', component: RestaurantsComponent, pathMatch:'full' },
-  { path:'**', redirectTo:'' }
+  { path: 'restaurants', component: RestaurantsComponent },
+  //{ path: 'auth/signup', component: SignupComponent },
+  { path: 'auth/signin', component: SigninComponent },
+  { path:'', redirectTo:'restaurants', pathMatch:'full' },
+  { path:'**', redirectTo:'restaurants' }
 ];
 
 @NgModule({
