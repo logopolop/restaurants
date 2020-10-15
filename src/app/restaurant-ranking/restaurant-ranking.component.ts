@@ -29,8 +29,8 @@ export class RestaurantRankingComponent implements OnChanges {
     .pipe(
       map((restaurants: Restaurant[]) => {
         const sortResult = restaurants.sort(this.sortByScore);
-        this.sortedBestRestaurants = sortResult.slice(0, 3);
-        this.sortedRestOfRestaurants = sortResult.slice(3) ? sortResult.slice(3) : [];
+        this.sortedBestRestaurants = sortResult.slice(0, 5);
+        this.sortedRestOfRestaurants = sortResult.slice(5) ? sortResult.slice(5) : [];
         
       })
     ).subscribe();
