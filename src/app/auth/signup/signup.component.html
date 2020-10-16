@@ -1,17 +1,41 @@
 <mat-card>
     <mat-card-content>
-      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      
         <h2>Inscription</h2>
-        <mat-error *ngIf="errorMessage">
-          {{ errorMessage }}
-        </mat-error>
+
         <mat-form-field class="full-width-input">
-          <input matInput placeholder="Email" formControlName="email" required>
+          <input matInput placeholder="Email" #userEmail required>
         </mat-form-field>
+
         <mat-form-field class="full-width-input">
-          <input matInput type="password" placeholder="Mot de passe" formControlName="password" required>
+          <input matInput type="password" placeholder="Mot de passe" #userPassword required>
         </mat-form-field>
-        <button mat-raised-button color="primary">Valider</button>
-      </form>
+
+        <button mat-raised-button color="primary" (click)="authService.signUp(userEmail.value, userPassword.value)">Valider</button>
+
+        <br />
+        <br />
+    
+        <div class="formGroup">
+          <span class="or"><span class="orInner">Ou</span></span>
+        </div>
+  
+        <br />
+        
+        <div class="formGroup">
+          <button mat-stroked-button color="warn" (click)="authService.googleAuth()">
+            Se connecter avec Google
+          </button>
+        </div>
+  
+        <br />
+        <hr />
+        <br />
+  
+        
+        <div class="redirectToLogin">
+          <span>Vous avez déjà un compte ? <a routerLink="/auth/signin">Se connecter</a></span>
+        </div>
+
     </mat-card-content>
   </mat-card>

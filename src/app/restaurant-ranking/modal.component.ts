@@ -4,7 +4,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { RestaurantService } from '../services/restaurant.service';
+import { RestaurantService } from 'src/app/services/restaurant.service';
 
 @Component({
   selector: 'app-modal-component',

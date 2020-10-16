@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import * as firebase from 'firebase';
+import { SuggestionListComponent } from '../suggestion-list/suggestion-list.component';
 
 @Component({
   selector: 'app-restaurants',
@@ -9,20 +9,9 @@ import * as firebase from 'firebase';
 })
 export class RestaurantsComponent implements OnInit {
 
-  isAuth: Boolean;
-
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
-    firebase.auth().onAuthStateChanged(
-      (user) => {
-        if (user) {
-          this.isAuth = true;
-        } else {
-          this.isAuth = false;
-        }
-      }
-    );
   }
 
 }

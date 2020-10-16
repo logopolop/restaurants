@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" *ngIf="isAuth" (click)="drawer.toggle()">
+    <button mat-icon-button class="example-icon" *ngIf="authService.isLoggedIn" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
     <span>On mange où ?</span>
@@ -7,15 +7,15 @@
     <button mat-button routerLink="/restaurants">
       <mat-icon>home</mat-icon> Accueil
     </button>
-    <!--
-      <button mat-button *ngIf="!isAuth" routerLink="auth/signup">
+    
+      <button mat-button *ngIf="!authService.isLoggedIn" routerLink="auth/signup">
         <mat-icon>person_add</mat-icon> Inscription
       </button>
-    -->
-    <button mat-button *ngIf="!isAuth" routerLink="auth/signin">
+    
+    <button mat-button *ngIf="!authService.isLoggedIn" routerLink="auth/signin">
       <mat-icon>person</mat-icon> Connexion
     </button>
-    <button mat-button *ngIf="isAuth" (click)="onSignOut()">
+    <button mat-button *ngIf="authService.isLoggedIn" (click)="authService.signOut()">
       <mat-icon>input</mat-icon> Déconnexion
     </button>
 </mat-toolbar>

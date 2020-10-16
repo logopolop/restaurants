@@ -1,17 +1,45 @@
 <mat-card>
     <mat-card-content>
-      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
-        <h2>Se connecter</h2>
-        <mat-error *ngIf="errorMessage">
-          {{ errorMessage }}
-        </mat-error>
-        <mat-form-field class="full-width-input">
-          <input matInput placeholder="Email" formControlName="email" required>
-        </mat-form-field>
-        <mat-form-field class="full-width-input">
-          <input matInput type="password" placeholder="Mot de passe" formControlName="password" required>
-        </mat-form-field>
-        <button mat-raised-button color="primary">Valider</button>
-      </form>
+      <h2>Se connecter</h2>
+
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Email" #userName required>
+      </mat-form-field>
+
+      <mat-form-field class="full-width-input">
+        <input matInput type="password" placeholder="Mot de passe" #userPassword required>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="authService.signIn(userName.value, userPassword.value)">Valider</button>
+
+      <br />
+      <br />
+  
+      <div class="formGroup">
+        <span class="or"><span class="orInner">Ou</span></span>
+      </div>
+
+      <br />
+      
+      <div class="formGroup">
+        <button mat-stroked-button color="warn" (click)="authService.googleAuth()">
+          Se connecter avec Google
+        </button>
+      </div>
+
+      <br />
+      <hr />
+      <br />
+
+      <div class="forgotPassword">
+        <a routerLink="/auth/forgot-password">Mot de passe oublié ?</a>
+      </div>
+
+      <br />
+
+      <div class="redirectToLogin">
+        <span>Vous n'avez pas de compte ? <a routerLink="/auth/signup">Inscrivez-vous</a></span>
+      </div>
+
     </mat-card-content>
   </mat-card>

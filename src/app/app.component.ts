@@ -10,28 +10,10 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   
-  isAuth: boolean;
-  
-  constructor(private authService: AuthService, private restauService: RestaurantService) {}
+  constructor(public authService: AuthService, private restauService: RestaurantService) {}
 
   onResetAll() {
     this.restauService.resetAllRestaurants();
-  }
-
-  ngOnInit(): void {
-    firebase.auth().onAuthStateChanged(
-      (user) => {
-        if (user) {
-          this.isAuth = true;
-        } else {
-          this.isAuth = false;
-        }
-      }
-    );
-  }
-
-  onSignOut() {
-    this.authService.signOutUser();
   }
 
 }

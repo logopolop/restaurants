@@ -1,36 +1,33 @@
+<div class="app">
+    <div>
+        <app-restaurant-ranking [restaurants$]="restaurants$"></app-restaurant-ranking>
+    </div>
 
-    <div class="app">
+    <div class="poll">
+        <app-suggestion-form></app-suggestion-form>
 
         <div>
-            <app-restaurant-ranking [restaurants$]="restaurants$"></app-restaurant-ranking>
-        </div>
-
-        <div class="poll">
-            <app-suggestion-form></app-suggestion-form>
-
-            <div>
-                <h3>Restaurants</h3>
-                <div *ngIf="!(restaurants$ | async)">
-                    Chargement ...
-                </div>
-                
-                <div *ngFor="let restau of restaurants$ | async">
-                    <div class="suggestion">
-                        <div>
-                            <mat-icon 
-                            matTooltip='Ajouté le : {{ restau.createdAt | date: "dd/MM/yyyy à HH:mm" }}' 
-                            matTooltipPosition="above"
-                            color="primary"
-                        >info</mat-icon> &nbsp; {{ restau.name }}
-                        </div>
-                        
-                        <button mat-mini-fab color="accent" (click)="onVoted(restau)">
-                            <mat-icon>plus_one</mat-icon>
-                        </button>
+            <h3>Restaurants</h3>
+            <div *ngIf="!(restaurants$ | async)">
+                Chargement ...
+            </div>
+            
+            <div *ngFor="let restau of restaurants$ | async">
+                <div class="suggestion">
+                    <div>
+                        <mat-icon 
+                        matTooltip='Ajouté le : {{ restau.createdAt | date: "dd/MM/yyyy à HH:mm" }}' 
+                        matTooltipPosition="above"
+                        color="primary"
+                    >info</mat-icon> &nbsp; {{ restau.name }}
                     </div>
-                    <br />
+                    
+                    <button mat-mini-fab color="accent" (click)="onVoted(restau)">
+                        <mat-icon>plus_one</mat-icon>
+                    </button>
                 </div>
+                <br />
             </div>
         </div>
-
     </div>
+</div>

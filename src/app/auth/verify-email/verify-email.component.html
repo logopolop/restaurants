@@ -1,0 +1,22 @@
+
+      <div>
+        <h3>Thank You for Registering</h3>
+  
+        <div *ngIf="authService.userData as user">
+          <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
+          <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
+        </div>
+        
+        <!-- Calling SendVerificationMail() method using authService Api -->
+        <div>
+          <button mat-stroked-button color="primary" (click)="authService.sendVerificationMail()">
+            Renvoyer un nouvel email
+          </button>
+        </div>
+  
+      </div>
+  
+      <div class="redirectToLogin">
+        <span>Revenir en arrière ? <a routerLink="/auth/signin">Se connecter</a></span>
+      </div>
+  

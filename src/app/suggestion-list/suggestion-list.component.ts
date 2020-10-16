@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService } from '../services/restaurant.service';
 import { AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Restaurant } from '../models/restaurant';
 import { Observable } from 'rxjs';
+import { Restaurant } from 'src/app/models/restaurant';
+import { RestaurantService } from 'src/app/services/restaurant.service';
 
 @Component({
   selector: 'app-suggestion-list',

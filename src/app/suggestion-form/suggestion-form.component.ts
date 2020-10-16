@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormBuilder, Validators } from "@angular/forms";
-import { RestaurantService } from '../services/restaurant.service';
+import { RestaurantService } from 'src/app/services/restaurant.service';
 
 @Component({
   selector: 'app-suggestion-form',

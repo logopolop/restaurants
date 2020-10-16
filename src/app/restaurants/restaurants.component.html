@@ -1,5 +1,6 @@
-<div id="banner" *ngIf="!isAuth">
+<div id="banner" *ngIf="!authService.isLoggedIn">
     Vous n'êtes pas connecté. Aucune modification ne sera sauvegardée. 
 </div>
 
 <app-suggestion-list></app-suggestion-list>
+

@@ -2,9 +2,9 @@ import { Component, OnChanges, Input } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { Restaurant } from './../models/restaurant';
 import { ModalComponent } from './modal.component';
 import { Observable } from 'rxjs';
+import { Restaurant } from 'src/app/models/restaurant';
 
 @Component({
   selector: 'app-restaurant-ranking',
