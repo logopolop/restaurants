@@ -1,22 +1,25 @@
 
       <div>
-        <h3>Thank You for Registering</h3>
+        <h3>Merci ! Vous êtes bien inscrit !</h3>
   
         <div *ngIf="authService.userData as user">
-          <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
-          <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
+          <p class="text-center">Nous vous avons envoyé un email à l'adresse <strong>{{user.email}}</strong>.</p>
+          <p class="text-center">Merci de cliquer sur le lien contenu dans l'email pour valider votre compte.</p>
         </div>
         
-        <!-- Calling SendVerificationMail() method using authService Api -->
+        <!-- Calling SendVerificationMail() method using authService Api
         <div>
           <button mat-stroked-button color="primary" (click)="authService.sendVerificationMail()">
             Renvoyer un nouvel email
           </button>
         </div>
+         -->
   
       </div>
+
+      <br />
   
       <div class="redirectToLogin">
-        <span>Revenir en arrière ? <a routerLink="/auth/signin">Se connecter</a></span>
+        <span>C'est fait ? <a routerLink="/auth/signin">Se connecter</a></span>
       </div>
   

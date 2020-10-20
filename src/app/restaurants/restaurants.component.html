@@ -2,5 +2,9 @@
     Vous n'êtes pas connecté. Aucune modification ne sera sauvegardée. 
 </div>
 
-<app-suggestion-list></app-suggestion-list>
+<div id="bannerWarning" *ngIf="authService.isLoggedIn && !canVoteAgain">
+    Vous avez voté il y a moins d'une heure. Patientez un peu avant de pouvoir voter à nouveau. 
+</div>
+
+<app-suggestion-list [canVote]="canVoteAgain"></app-suggestion-list>
 

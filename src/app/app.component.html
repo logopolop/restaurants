@@ -8,12 +8,15 @@
       <mat-icon>home</mat-icon> Accueil
     </button>
     
-      <button mat-button *ngIf="!authService.isLoggedIn" routerLink="auth/signup">
+      <button mat-button *ngIf="!authService.isLoggedIn" routerLink="/auth/signup">
         <mat-icon>person_add</mat-icon> Inscription
       </button>
-    
-    <button mat-button *ngIf="!authService.isLoggedIn" routerLink="auth/signin">
+
+    <button mat-button *ngIf="!authService.isLoggedIn" routerLink="/auth/signin">
       <mat-icon>person</mat-icon> Connexion
+    </button>
+    <button mat-button *ngIf="authService.isLoggedIn" routerLink="/dashboard">
+      <mat-icon>person</mat-icon> Mon compte
     </button>
     <button mat-button *ngIf="authService.isLoggedIn" (click)="authService.signOut()">
       <mat-icon>input</mat-icon> Déconnexion

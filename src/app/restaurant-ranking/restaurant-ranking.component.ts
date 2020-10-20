@@ -15,6 +15,7 @@ export class RestaurantRankingComponent implements OnChanges {
 
   @Input()
   restaurants$;
+  
   sortedBestRestaurants: Restaurant[];
   sortedRestOfRestaurants: Restaurant[];
   modalResult;

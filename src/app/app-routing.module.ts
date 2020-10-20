@@ -16,8 +16,8 @@ const routes: Routes = [
   { path: 'auth/signin', component: SigninComponent },
   { path: 'auth/forgot-password', component: ForgotPasswordComponent },
   { path: 'auth/verify-email', component: VerifyEmailComponent },
-  { path:'', redirectTo:'restaurants', pathMatch:'full' },
-  { path:'**', redirectTo:'restaurants' }
+  { path: '', redirectTo:'restaurants', pathMatch:'full' },
+  { path: '**', redirectTo:'restaurants' }
 ];
 
 @NgModule({

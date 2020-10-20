@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { auth } from 'firebase';
 import { User } from '../models/user';
@@ -18,7 +19,7 @@ export class AuthService {
     public router: Router,
     public ngZone: NgZone // NgZone service to remove outside scope warning
   ) {
-    this.fireauth.authState.subscribe(user => {
+    this.fireauth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
@@ -33,11 +34,11 @@ export class AuthService {
   // Sign in with email/password
   signIn(email: string, password: string) {
     return this.fireauth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
+      .then((result) => {    
           this.ngZone.run(() => {
             this.router.navigate(['/restaurants']);
+            this.setUserData(result.user);
           });
-          this.setUserData(result.user);
         }).catch((error) => {
           window.alert(error.message);
         });
@@ -88,18 +89,28 @@ export class AuthService {
   authLogin(provider) {
     return this.fireauth.signInWithPopup(provider)
       .then((result) => {
-        this.router.navigate(['/restaurants']);
+        this.ngZone.run(() => {
+          this.router.navigate(['/restaurants']);
+        });
         this.setUserData(result.user);
       }).catch((error) => {
         window.alert(error.message);
       })
   }
 
+  // Sign out
+  signOut() {
+    return this.fireauth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['/auth/signin']);
+    })
+  }
+
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth provider
   in Firestore database */
-  setUserData(user) {
-    const userRef: AngularFirestoreDocument<any> = this.firestore.doc(`users/${user.uid}`);
+  setUserData(user) {   
+    const userRef: AngularFirestoreDocument<any> = this.firestore.doc(`users/${this.userData.uid}`);
     const userData: User = {
       uid: user.uid,
       email: user.email,
@@ -109,15 +120,29 @@ export class AuthService {
     }
     return userRef.set(userData, {
       merge: true
-    })
+    });
   }
 
-  // Sign out
-  signOut() {
-    return this.fireauth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['/auth/signin']);
-    })
+  updateVotes() {
+    const userRef: AngularFirestoreDocument<any> = this.firestore.doc(`users/${this.userData.uid}`);
+    return userRef.update({
+      nbVotes: firebase.firestore.FieldValue.increment(1),
+      lastVoteAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
+
+  getFromDbUserData() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userRef: AngularFirestoreDocument<any> = this.firestore.doc(`users/${user.uid}`);
+    return userRef.get().toPromise().then(function(doc) {
+      if (doc.exists) {
+          return doc.data();
+      } else {
+          return false;
+      }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
   }
 
 }

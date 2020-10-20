@@ -35,10 +35,10 @@ import { RestaurantService } from './services/restaurant.service';
 @NgModule({
   declarations: [
     AppComponent,
-    SuggestionFormComponent,
-    SuggestionListComponent,
-    RestaurantRankingComponent,
     RestaurantsComponent,
+    RestaurantRankingComponent,
+    SuggestionListComponent,
+    SuggestionFormComponent,
     ModalComponent,
     SigninComponent,
     SignupComponent,

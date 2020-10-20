@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Restaurant } from 'src/app/models/restaurant';
 import { RestaurantService } from 'src/app/services/restaurant.service';
@@ -10,6 +11,9 @@ import { RestaurantService } from 'src/app/services/restaurant.service';
   styleUrls: ['./suggestion-list.component.scss']
 })
 export class SuggestionListComponent implements OnInit {
+
+  @Input()
+  canVote: Boolean;
 
   restaurantsCollection: AngularFirestoreCollection<Restaurant>;
   restaurants$: Observable<Restaurant[]>;

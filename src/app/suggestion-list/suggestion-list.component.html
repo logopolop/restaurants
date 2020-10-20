@@ -19,10 +19,10 @@
                         matTooltip='Ajouté le : {{ restau.createdAt | date: "dd/MM/yyyy à HH:mm" }}' 
                         matTooltipPosition="above"
                         color="primary"
-                    >info</mat-icon> &nbsp; {{ restau.name }}
+                        >info</mat-icon> &nbsp; {{ restau.name }}
                     </div>
                     
-                    <button mat-mini-fab color="accent" (click)="onVoted(restau)">
+                    <button mat-mini-fab color="accent" (click)="onVoted(restau)" [disabled]="!canVote">
                         <mat-icon>plus_one</mat-icon>
                     </button>
                 </div>

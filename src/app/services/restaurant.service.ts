@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Restaurant } from '../models/restaurant';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore, private authService: AuthService) { }
 
   createRestaurant(name) {
     return this.firestore.collection('restaurants').add({
@@ -22,6 +23,7 @@ export class RestaurantService {
   }
 
   voteForRestaurant(restaurant) {
+    this.authService.updateVotes();
     return this.firestore.doc(`restaurants/${restaurant.id}`).update({
       ...restaurant,
       votes: restaurant.votes + 1
